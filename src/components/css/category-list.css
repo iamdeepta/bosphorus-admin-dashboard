@@ -1,0 +1,10 @@
+.add_new_icon {
+  color: #ea7a9a;
+  cursor: pointer;
+}
+
+.product_list_image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
