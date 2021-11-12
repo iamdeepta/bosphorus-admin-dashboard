@@ -9,11 +9,15 @@ const ProductEditModal = ({
   product_name,
   product_detail,
   product_price,
+  product_cat_id,
   get_data,
+  get_data_cat_list,
 }) => {
   const [product_name_edit, setProductNameEdit] = useState(product_name);
   const [product_detail_edit, setProductDetailEdit] = useState(product_detail);
   const [product_price_edit, setProductPriceEdit] = useState(product_price);
+  const [product_cat_id_edit, setProductCatIdEdit] = useState(product_cat_id);
+
   const [loader, setLoader] = useState(false);
 
   async function productUpdate(id) {
@@ -22,6 +26,7 @@ const ProductEditModal = ({
     formData.append("product_name", product_name_edit);
     formData.append("product_detail", product_detail_edit);
     formData.append("product_price", product_price_edit);
+    formData.append("product_cat_id", product_cat_id_edit);
 
     let result = await fetch(AppUrl.base_url + "productUpdate/" + id, {
       method: "POST",
@@ -84,6 +89,24 @@ const ProductEditModal = ({
                     value={product_price_edit}
                     onChange={(e) => setProductPriceEdit(e.target.value)}
                   />
+                </div>
+
+                <div className="form-group">
+                  <label className="text-black font-w500">Category</label>
+                  <select
+                    name="cat_icon"
+                    id="cat_icon"
+                    className="form-control"
+                    value={product_cat_id_edit}
+                    onChange={(e) => setProductCatIdEdit(e.target.value)}
+                  >
+                    {/* <option value="">Select a category</option> */}
+                    {get_data_cat_list.map((item) => (
+                      <option value={item.cat_id} key={item.cat_id}>
+                        {item.cat_name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 {/* <div className="form-group">

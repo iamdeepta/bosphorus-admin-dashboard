@@ -10,4 +10,6 @@ export default class AppUrl {
   //   static base_url =
   //     "https://bosphorus.designhubtechnologies.com/backend/public/api/";
   //   static image_url = "https://bosphorus.designhubtechnologies.com/";
+  //   static image_url_backend =
+  //     "https://bosphorus.designhubtechnologies.com/backend/storage/app/";
 }

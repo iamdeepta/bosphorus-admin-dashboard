@@ -45,6 +45,12 @@ const Sidebar = () => {
                 <span className="nav-text">Products</span>
               </Link>
             </li>
+            <li>
+              <Link to="/gallery" className="ai-icon" ariaExpanded="false">
+                <i className="flaticon-381-television"></i>
+                <span className="nav-text">Gallery</span>
+              </Link>
+            </li>
             {/* <li>
               <a className="has-arrow ai-icon" href="true" ariaExpanded="false">
                 <i className="flaticon-381-television"></i>

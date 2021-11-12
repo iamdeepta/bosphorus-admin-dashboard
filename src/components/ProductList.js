@@ -7,13 +7,14 @@ import AppUrl from "./classes/AppUrl";
 import axios from "axios";
 import ProductEditModal from "./ProductEditModal";
 import ProductDeleteModal from "./ProductDeleteModal";
+import ProductPopularModal from "./ProductPopularModal";
 import ProductImageEditModal from "./ProductImageEditModal";
 
 const ProductList = () => {
   const [product_name, setProductName] = useState("");
   const [product_detail, setProductDetail] = useState("");
   const [product_price, setProductPrice] = useState("");
-  const [product_cat_id, setProductCatId] = useState([]);
+  const [product_cat_id, setProductCatId] = useState("");
   const [product_image, setProductImage] = useState("");
   const [data, setData] = useState([]);
   const [data1, setData1] = useState([]);
@@ -75,7 +76,7 @@ const ProductList = () => {
       setProductName("");
       setProductDetail("");
       setProductPrice("");
-      setProductCatId("");
+      //   setProductCatId("");
       setProductImage("");
       setLoader(false);
     } else {
@@ -197,12 +198,14 @@ const ProductList = () => {
               <table class="table table-responsive-md">
                 <thead>
                   <tr>
-                    <th class="width80">#</th>
+                    <th class="width20">#</th>
                     <th>Name</th>
                     <th>Detail</th>
                     <th>Price</th>
                     <th>Image</th>
-                    <th>Created at</th>
+                    <th>Popular</th>
+                    <th>Category</th>
+                    <th>Created</th>
 
                     <th>Action</th>
                   </tr>
@@ -227,6 +230,14 @@ const ProductList = () => {
                           }
                         />
                       </td>
+                      <td>
+                        {item.product_popular === 1 ? (
+                          <span class="badge light badge-success">Yes</span>
+                        ) : (
+                          <span class="badge light badge-danger">No</span>
+                        )}
+                      </td>
+                      <td>{item.cat_name}</td>
                       <td>{item.product_date}</td>
 
                       <td>
@@ -271,6 +282,16 @@ const ProductList = () => {
                               href="true"
                               data-toggle="modal"
                               data-target={
+                                "#productPopularModal" + item.product_id
+                              }
+                            >
+                              Make Popular
+                            </a>
+                            <a
+                              class="dropdown-item"
+                              href="true"
+                              data-toggle="modal"
+                              data-target={
                                 "#productDeleteModal" + item.product_id
                               }
                             >
@@ -284,9 +305,15 @@ const ProductList = () => {
                         product_name={item.product_name}
                         product_detail={item.product_detail}
                         product_price={item.product_price}
+                        product_cat_id={item.product_cat_id}
                         get_data={getData1}
+                        get_data_cat_list={data}
                       />
                       <ProductDeleteModal
+                        product_id={item.product_id}
+                        get_data={getData1}
+                      />
+                      <ProductPopularModal
                         product_id={item.product_id}
                         get_data={getData1}
                       />

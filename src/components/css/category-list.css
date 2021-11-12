@@ -8,3 +8,13 @@
   height: 80px;
   border-radius: 50%;
 }
+
+.gallery_list_image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.btn_unpopular {
+  margin-left: 10px;
+}

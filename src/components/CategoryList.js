@@ -10,6 +10,7 @@ import CategoryDeleteModal from "./CategoryDeleteModal";
 
 const CategoryList = () => {
   const [cat_name, setCatName] = useState("");
+  const [cat_icon, setCatIcon] = useState("");
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
 
@@ -35,6 +36,7 @@ const CategoryList = () => {
   async function catAdd() {
     const formData = new FormData();
     formData.append("cat_name", cat_name);
+    formData.append("cat_icon", cat_icon);
 
     let result = await fetch(AppUrl.base_url + "categoryAdd", {
       method: "POST",
@@ -77,6 +79,177 @@ const CategoryList = () => {
                     value={cat_name}
                     onChange={(e) => setCatName(e.target.value)}
                   />
+                </div>
+
+                <div className="form-group">
+                  <label for="glass_icon" className="text-black font-w500">
+                    Category Icon
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="radio"
+                      id="glass_icon"
+                      name="cat_icon"
+                      value="fa fa-glass"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="glass_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-glass"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      id="coffee_icon"
+                      name="cat_icon"
+                      value="fa fa-coffee"
+                      className="ml-4"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="coffee_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-coffee"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      id="eercast_icon"
+                      name="cat_icon"
+                      value="fa fa-eercast"
+                      className="ml-4"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="eercast_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-eercast"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      id="bullseye_icon"
+                      name="cat_icon"
+                      value="fa fa-bullseye"
+                      className="ml-4"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="bullseye_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-bullseye"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      id="spoon_icon"
+                      name="cat_icon"
+                      value="fa fa-spoon"
+                      className="ml-4"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="spoon_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-spoon"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      id="cutlery_icon"
+                      name="cat_icon"
+                      value="fa fa-cutlery"
+                      className="ml-4"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="cutlery_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-cutlery"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      id="stack-exchange_icon"
+                      name="cat_icon"
+                      value="fa fa-stack-exchange"
+                      className="ml-4"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="stack-exchange_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-stack-exchange"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      id="codiepie_icon"
+                      name="cat_icon"
+                      value="fa fa-codiepie"
+                      className="ml-4"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="codiepie_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-codiepie"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      id="bitbucket_icon"
+                      name="cat_icon"
+                      value="fa fa-bitbucket"
+                      className="ml-3"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="bitbucket_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-bitbucket"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      id="pie-chart_icon"
+                      name="cat_icon"
+                      value="fa fa-pie-chart"
+                      className="ml-4"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="pie-chart_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-pie-chart"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      id="cubes_icon"
+                      name="cat_icon"
+                      value="fa fa-cubes"
+                      className="ml-4"
+                      onChange={(e) => setCatIcon(e.target.value)}
+                    ></input>
+                    <label
+                      for="cubes_icon"
+                      className="text-black font-w500 ml-1"
+                    >
+                      <i className="fa fa-cubes"></i>
+                    </label>
+                  </div>
                 </div>
 
                 {/* <div className="form-group">
@@ -136,7 +309,7 @@ const CategoryList = () => {
                   <tr>
                     <th class="width80">#</th>
                     <th>Name</th>
-
+                    <th>Icon</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -147,6 +320,9 @@ const CategoryList = () => {
                         <strong>{index + 1}</strong>
                       </td>
                       <td>{item.cat_name}</td>
+                      <td>
+                        <i className={item.cat_icon}></i>
+                      </td>
 
                       <td>
                         <div class="dropdown">
@@ -197,6 +373,7 @@ const CategoryList = () => {
                       <CategoryEditModal
                         cat_id={item.cat_id}
                         cat_name={item.cat_name}
+                        cat_icon={item.cat_icon}
                         get_data={getData}
                       />
                       <CategoryDeleteModal
