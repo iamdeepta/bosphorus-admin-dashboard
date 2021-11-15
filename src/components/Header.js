@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   function logout(e) {
@@ -300,10 +301,7 @@ const Header = () => {
                     </div>
                   </a>
                   <div className="dropdown-menu dropdown-menu-right">
-                    <a
-                      href="app-profile.html"
-                      className="dropdown-item ai-icon"
-                    >
+                    <Link to="/about" className="dropdown-item ai-icon">
                       <svg
                         id="icon-user1"
                         xmlns="http://www.w3.org/2000/svg"
@@ -321,7 +319,7 @@ const Header = () => {
                         <circle cx="12" cy="7" r="4"></circle>
                       </svg>
                       <span className="ml-2">Profile </span>
-                    </a>
+                    </Link>
                     <a
                       href="email-inbox.html"
                       className="dropdown-item ai-icon"
@@ -345,7 +343,7 @@ const Header = () => {
                       <span className="ml-2">Inbox </span>
                     </a>
                     <a
-                      href
+                      href="!#"
                       className="dropdown-item ai-icon"
                       onClick={(e) => logout(e)}
                     >
