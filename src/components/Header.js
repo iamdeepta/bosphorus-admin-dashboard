@@ -320,10 +320,7 @@ const Header = () => {
                       </svg>
                       <span className="ml-2">Profile </span>
                     </Link>
-                    <a
-                      href="email-inbox.html"
-                      className="dropdown-item ai-icon"
-                    >
+                    <a href="/inbox" className="dropdown-item ai-icon">
                       <svg
                         id="icon-inbox"
                         xmlns="http://www.w3.org/2000/svg"

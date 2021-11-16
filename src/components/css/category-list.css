@@ -18,3 +18,7 @@
 .btn_unpopular {
   margin-left: 10px;
 }
+
+.inbox_message {
+  white-space: pre-line;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -8,10 +8,10 @@ const Sidebar = () => {
         <div className="deznav-scroll">
           <ul className="metismenu" id="menu">
             <li>
-              <Link className="ai-icon" to="/" ariaExpanded="false">
+              <a className="ai-icon" href="/" ariaExpanded="false">
                 <i className="flaticon-381-networking"></i>
                 <span className="nav-text">Dashboard</span>
-              </Link>
+              </a>
               {/* <ul ariaExpanded="false">
                 <li>
                   <a href="index.html">Dashboard</a>
@@ -34,22 +34,28 @@ const Sidebar = () => {
               </ul> */}
             </li>
             <li>
-              <Link to="/category" className="ai-icon" ariaExpanded="false">
+              <a href="/category" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-settings-2"></i>
                 <span className="nav-text">Categories</span>
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="/product" className="ai-icon" ariaExpanded="false">
+              <a href="/product" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-notepad"></i>
                 <span className="nav-text">Products</span>
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="/gallery" className="ai-icon" ariaExpanded="false">
+              <a href="/gallery" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-television"></i>
                 <span className="nav-text">Gallery</span>
-              </Link>
+              </a>
+            </li>
+            <li>
+              <a href="/review" className="ai-icon" ariaExpanded="false">
+                <i className="flaticon-381-internet"></i>
+                <span className="nav-text">Reviews</span>
+              </a>
             </li>
             {/* <li>
               <a className="has-arrow ai-icon" href="true" ariaExpanded="false">
