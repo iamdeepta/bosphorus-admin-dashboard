@@ -1,7 +1,62 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 //import AddOrderSidebar from "./AddOrderSidebar";
+import axios from "axios";
+import AppUrl from "./classes/AppUrl";
 
 const ContentBody = () => {
+  const [menu, setMenu] = useState([]);
+  const [order, setOrder] = useState([]);
+
+  useEffect(() => {
+    getData();
+    getData1();
+  }, []);
+
+  //  function getData() {
+  //    axios
+  //      .get(AppUrl.base_url + "categoryGet")
+  //      .then(function (response) {
+  //        if (response) {
+  //          setData(response.data);
+
+  //          //console.log(response.data);
+  //        }
+  //      })
+  //      .catch(function (error) {
+  //        console.log(error);
+  //      });
+  //  }
+
+  function getData() {
+    axios
+      .get(AppUrl.base_url + "productGet")
+      .then(function (response) {
+        if (response) {
+          setMenu(response.data);
+          //setLoader(false);
+          //console.log(response.data);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  function getData1() {
+    axios
+      .get(AppUrl.base_url + "orderGet")
+      .then(function (response) {
+        if (response) {
+          setOrder(response.data);
+          //setLoader(false);
+          //console.log(response.data);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       <div className="content-body">
@@ -15,7 +70,7 @@ const ContentBody = () => {
                 <div className="card-body">
                   <div className="media align-items-center">
                     <div className="media-body mr-2">
-                      <h2 className="text-white font-w600">459</h2>
+                      <h2 className="text-white font-w600">{menu.length}</h2>
                       <span className="text-white">Total Menus</span>
                     </div>
                     <div className="d-inline-block position-relative donut-chart-sale">
@@ -57,7 +112,7 @@ const ContentBody = () => {
                 <div className="card-body">
                   <div className="media align-items-center">
                     <div className="media-body mr-2">
-                      <h2 className="text-white font-w600">$ 87,561</h2>
+                      <h2 className="text-white font-w600">TK 87,561</h2>
                       <span className="text-white">Total Revenue</span>
                     </div>
                     <div className="d-inline-block position-relative donut-chart-sale">
@@ -92,7 +147,7 @@ const ContentBody = () => {
                 <div className="card-body">
                   <div className="media align-items-center">
                     <div className="media-body mr-2">
-                      <h2 className="text-white font-w600">247</h2>
+                      <h2 className="text-white font-w600">{order.length}</h2>
                       <span className="text-white">Total Oders</span>
                     </div>
                     <div className="d-inline-block position-relative donut-chart-sale">
@@ -139,7 +194,7 @@ const ContentBody = () => {
                 <div className="card-body">
                   <div className="media align-items-center">
                     <div className="media-body mr-2">
-                      <h2 className="text-white font-w600">872</h2>
+                      <h2 className="text-white font-w600">{order.length}</h2>
                       <span className="text-white">Total Customers</span>
                     </div>
                     <div className="d-inline-block position-relative donut-chart-sale">
@@ -506,7 +561,7 @@ const ContentBody = () => {
                 </div>
               </div>
             </div>
-            <div className="col-xl-9 col-xxl-8">
+            {/* <div className="col-xl-9 col-xxl-8">
               <div className="row">
                 <div className="col-xl-12">
                   <div className="card">
@@ -644,8 +699,8 @@ const ContentBody = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-xl-3 col-xxl-4">
+            </div> */}
+            {/* <div className="col-xl-3 col-xxl-4">
               <div className="row">
                 <div className="col-xl-12">
                   <div className="card trending-menus">
@@ -764,7 +819,7 @@ const ContentBody = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ const Header = () => {
                 </div>
               </div>
               <ul className="navbar-nav header-right">
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <div className="input-group search-area d-xl-inline-flex d-none">
                     <input
                       type="text"
@@ -30,17 +30,17 @@ const Header = () => {
                     />
                     <div className="input-group-append">
                       <span className="input-group-text">
-                        <a href="true">
+                        <a href="!#">
                           <i className="flaticon-381-search-2"></i>
                         </a>
                       </span>
                     </div>
                   </div>
-                </li>
+                </li> */}
                 <li className="nav-item dropdown notification_dropdown">
                   <a
                     className="nav-link  ai-icon"
-                    href="true"
+                    href="!#"
                     role="button"
                     data-toggle="dropdown"
                   >
@@ -162,7 +162,7 @@ const Header = () => {
                         </li>
                       </ul>
                     </div>
-                    <a className="all-notification" href="true">
+                    <a className="all-notification" href="!#">
                       See all notifications <i className="ti-arrow-right"></i>
                     </a>
                   </div>

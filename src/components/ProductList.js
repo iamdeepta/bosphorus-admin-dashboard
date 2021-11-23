@@ -231,7 +231,7 @@ const ProductList = () => {
                         />
                       </td>
                       <td>
-                        {item.product_popular === 1 ? (
+                        {item.product_popular === "1" ? (
                           <span class="badge light badge-success">Yes</span>
                         ) : (
                           <span class="badge light badge-danger">No</span>

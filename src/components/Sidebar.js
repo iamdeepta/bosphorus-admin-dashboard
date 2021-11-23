@@ -41,8 +41,20 @@ const Sidebar = () => {
             </li>
             <li>
               <a href="/product" className="ai-icon" ariaExpanded="false">
-                <i className="flaticon-381-notepad"></i>
+                <i className="flaticon-381-heart"></i>
                 <span className="nav-text">Products</span>
+              </a>
+            </li>
+            <li>
+              <a href="/order" className="ai-icon" ariaExpanded="false">
+                <i className="flaticon-381-notepad"></i>
+                <span className="nav-text">Orders</span>
+              </a>
+            </li>
+            <li>
+              <a href="/reservation" className="ai-icon" ariaExpanded="false">
+                <i className="flaticon-381-layer-1"></i>
+                <span className="nav-text">Reservation</span>
               </a>
             </li>
             <li>

@@ -14,6 +14,8 @@ const Gallery = lazy(() => import("./pages/Gallery"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Inbox = lazy(() => import("./pages/Inbox"));
 const Review = lazy(() => import("./pages/Review"));
+const Order = lazy(() => import("./pages/Order"));
+const Reservation = lazy(() => import("./pages/Reservation"));
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
               <Route exact path="/about" component={Profile} />
               <Route exact path="/inbox" component={Inbox} />
               <Route exact path="/review" component={Review} />
+              <Route exact path="/order" component={Order} />
+              <Route exact path="/reservation" component={Reservation} />
             </>
           ) : (
             <Route exact path="/" component={LoginPage} />
