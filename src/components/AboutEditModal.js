@@ -11,6 +11,7 @@ const AboutEditModal = ({
   about_phone,
   about_email,
   about_location,
+  about_open_hour,
   about_menu,
   about_stuff,
   about_customer,
@@ -18,6 +19,7 @@ const AboutEditModal = ({
   about_insta,
   about_twitter,
   about_pinterest,
+  about_delivery_charge,
   get_data,
 }) => {
   const [about_phone_edit, setAboutPhoneEdit] = useState(about_phone);
@@ -34,6 +36,12 @@ const AboutEditModal = ({
   const [about_twitter_edit, setAboutTwitterEdit] = useState(about_twitter);
   const [about_pinterest_edit, setAboutPinterestEdit] =
     useState(about_pinterest);
+  const [about_open_hour_edit, setAboutOpenHourEdit] =
+    useState(about_open_hour);
+  const [about_delivery_charge_edit, setAboutDeliveryChargeEdit] = useState(
+    about_delivery_charge
+  );
+
   const [loader, setLoader] = useState(false);
 
   async function aboutUpdate(id) {
@@ -51,6 +59,8 @@ const AboutEditModal = ({
     formData.append("about_insta", about_insta_edit);
     formData.append("about_twitter", about_twitter_edit);
     formData.append("about_pinterest", about_pinterest_edit);
+    formData.append("about_open_hour", about_open_hour_edit);
+    formData.append("about_delivery_charge", about_delivery_charge_edit);
 
     let result = await fetch(AppUrl.base_url + "aboutUpdate/" + id, {
       method: "POST",
@@ -85,6 +95,18 @@ const AboutEditModal = ({
             </div>
             <div className="modal-body">
               <form>
+                <div className="form-group">
+                  <label className="text-black font-w500">
+                    Delivery Charge
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={about_delivery_charge_edit}
+                    onChange={(e) => setAboutDeliveryChargeEdit(e.target.value)}
+                  />
+                </div>
+
                 <div className="form-group">
                   <label className="text-black font-w500">Description</label>
                   <textarea
@@ -137,6 +159,16 @@ const AboutEditModal = ({
                     className="form-control"
                     value={about_location_edit}
                     onChange={(e) => setAboutLocationEdit(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="text-black font-w500">Opening Hour</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={about_open_hour_edit}
+                    onChange={(e) => setAboutOpenHourEdit(e.target.value)}
                   />
                 </div>
 

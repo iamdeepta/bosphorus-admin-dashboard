@@ -1,5 +1,6 @@
 {
   "name": "bosphorus-admin-dashboard",
+  "homepage": "https://adminbosphorus.designhubtechnologies.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

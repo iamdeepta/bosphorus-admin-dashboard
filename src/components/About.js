@@ -95,6 +95,7 @@ const About = () => {
                     <th>Phone</th>
                     <th>Email</th>
                     <th>Location</th>
+                    <th>Opening Hours</th>
                     <th>Menu</th>
                     <th>Staff</th>
                     <th>Customer</th>
@@ -102,6 +103,7 @@ const About = () => {
                     <th>Instagram</th>
                     <th>Twitter</th>
                     <th>Pinterest</th>
+                    <th>Delivery Charge</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -110,11 +112,10 @@ const About = () => {
                     <tr key={item.about_id}>
                       <td>{item.about_description}</td>
                       <td>{item.about_list}</td>
-                      <td>
-                        <i className={item.about_phone}></i>
-                      </td>
+                      <td>{item.about_phone}</td>
                       <td>{item.about_email}</td>
                       <td>{item.about_location}</td>
+                      <td>{item.about_open_hour}</td>
                       <td>{item.about_menu}</td>
                       <td>{item.about_stuff}</td>
                       <td>{item.about_customer}</td>
@@ -122,6 +123,7 @@ const About = () => {
                       <td>{item.about_insta}</td>
                       <td>{item.about_twitter}</td>
                       <td>{item.about_pinterest}</td>
+                      <td>{item.about_delivery_charge}</td>
 
                       <td>
                         <div class="dropdown">
@@ -176,6 +178,7 @@ const About = () => {
                         about_phone={item.about_phone}
                         about_email={item.about_email}
                         about_location={item.about_location}
+                        about_open_hour={item.about_open_hour}
                         about_menu={item.about_menu}
                         about_stuff={item.about_stuff}
                         about_customer={item.about_customer}
@@ -183,6 +186,7 @@ const About = () => {
                         about_insta={item.about_insta}
                         about_twitter={item.about_twitter}
                         about_pinterest={item.about_pinterest}
+                        about_delivery_charge={item.about_delivery_charge}
                         get_data={getData}
                       />
                     </tr>

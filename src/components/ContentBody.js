@@ -6,11 +6,135 @@ import AppUrl from "./classes/AppUrl";
 const ContentBody = () => {
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
+  const [orderWeekly, setOrderWeekly] = useState([]);
 
   useEffect(() => {
     getData();
     getData1();
+    getData2();
   }, []);
+
+  const monthlyPercent = () => {
+    // var percent_monthly = (document.querySelector("#SvgjsText1026").innerHTML =
+    //   "77%");
+  };
+
+  const weeklyPercent = () => {
+    // var percent_weekly = (document.querySelector("#SvgjsText1094").innerHTML =
+    //   "78%");
+  };
+
+  const dailyPercent = () => {
+    // var percent_daily = (document.querySelector("#SvgjsText1154").innerHTML =
+    //   "87%");
+  };
+
+  // window.onload = function percent() {
+  //   var percent_monthly = (document.querySelector("#SvgjsText1026").innerHTML =
+  //     "77%");
+  //   var percent_weekly = (document.querySelector("#SvgjsText1094").innerHTML =
+  //     "78%");
+  //   var percent_daily = (document.querySelector("#SvgjsText1154").innerHTML =
+  //     "87%");
+  // };
+
+  var sub_total = 0;
+  var sub_total_daily = 0;
+  var sub_total_yesterday = 0;
+  var sub_total_monthly = 0;
+  var sub_total_weekly = 0;
+
+  var daily_pending = 0;
+  var daily_delivered = 0;
+  var daily_canceled = 0;
+  var monthly_pending = 0;
+  var monthly_delivered = 0;
+  var monthly_canceled = 0;
+  var weekly_pending = 0;
+  var weekly_delivered = 0;
+  var weekly_canceled = 0;
+
+  var today = new Date();
+  var date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+  var current_month = today.getFullYear() + "-" + (today.getMonth() + 1);
+
+  var yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+  var dd = yesterday.getDate();
+  var mm = yesterday.getMonth() + 1; //January is 0!
+
+  var yyyy = yesterday.getFullYear();
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  yesterday = yyyy + "-" + mm + "-" + dd;
+
+  order.map((item) => (sub_total = sub_total + parseInt(item.order_subtotal)));
+
+  order.map((item) =>
+    item.order_date === date
+      ? item.order_status.toString() === "1"
+        ? (sub_total_daily = sub_total_daily + parseInt(item.order_subtotal))
+        : "N/A"
+      : "N/A"
+  );
+
+  order.map((item) =>
+    item.order_date === yesterday
+      ? item.order_status.toString() === "1"
+        ? (sub_total_yesterday =
+            sub_total_yesterday + parseInt(item.order_subtotal))
+        : "N/A"
+      : "N/A"
+  );
+
+  order.map((item) =>
+    item.order_date.substr(0, 7) === current_month
+      ? item.order_status.toString() === "1"
+        ? (sub_total_monthly =
+            sub_total_monthly + parseInt(item.order_subtotal))
+        : "N/A"
+      : "N/A"
+  );
+
+  orderWeekly.map((item) =>
+    item.order_status.toString() === "1"
+      ? (sub_total_weekly = sub_total_weekly + parseInt(item.order_subtotal))
+      : "N/A"
+  );
+
+  order.map((item) =>
+    item.order_date === date
+      ? item.order_status.toString() === "0"
+        ? (daily_pending = daily_pending + 1)
+        : item.order_status.toString() === "1"
+        ? (daily_delivered = daily_delivered + 1)
+        : (daily_canceled = daily_canceled + 1)
+      : "N/A"
+  );
+
+  order.map((item) =>
+    item.order_date.substr(0, 7) === current_month
+      ? item.order_status.toString() === "0"
+        ? (monthly_pending = monthly_pending + 1)
+        : item.order_status.toString() === "1"
+        ? (monthly_delivered = monthly_delivered + 1)
+        : (monthly_canceled = monthly_canceled + 1)
+      : "N/A"
+  );
+
+  orderWeekly.map((item) =>
+    item.order_status.toString() === "0"
+      ? (weekly_pending = weekly_pending + 1)
+      : item.order_status.toString() === "1"
+      ? (weekly_delivered = weekly_delivered + 1)
+      : (weekly_canceled = weekly_canceled + 1)
+  );
 
   //  function getData() {
   //    axios
@@ -57,6 +181,21 @@ const ContentBody = () => {
       });
   }
 
+  function getData2() {
+    axios
+      .get(AppUrl.base_url + "orderGetWeekly")
+      .then(function (response) {
+        if (response) {
+          setOrderWeekly(response.data);
+          //setLoader(false);
+          //console.log(response.data);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       <div className="content-body">
@@ -75,6 +214,7 @@ const ContentBody = () => {
                     </div>
                     <div className="d-inline-block position-relative donut-chart-sale">
                       <span
+                        style={{ opacity: 0 }}
                         className="donut1"
                         data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'
                       >
@@ -112,16 +252,18 @@ const ContentBody = () => {
                 <div className="card-body">
                   <div className="media align-items-center">
                     <div className="media-body mr-2">
-                      <h2 className="text-white font-w600">TK 87,561</h2>
+                      <h2 className="text-white font-w600">TK {sub_total}</h2>
                       <span className="text-white">Total Revenue</span>
                     </div>
                     <div className="d-inline-block position-relative donut-chart-sale">
                       <span
+                        style={{ opacity: 0 }}
                         className="donut1"
                         data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'
                       >
                         3/8
                       </span>
+
                       <small className="text-primary">
                         <svg
                           width="20"
@@ -152,6 +294,7 @@ const ContentBody = () => {
                     </div>
                     <div className="d-inline-block position-relative donut-chart-sale">
                       <span
+                        style={{ opacity: 0 }}
                         className="donut1"
                         data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'
                       >
@@ -199,6 +342,7 @@ const ContentBody = () => {
                     </div>
                     <div className="d-inline-block position-relative donut-chart-sale">
                       <span
+                        style={{ opacity: 0 }}
                         className="donut1"
                         data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'
                       >
@@ -237,9 +381,9 @@ const ContentBody = () => {
                 <div className="card-header d-sm-flex flex-wrap d-block pb-0 border-0">
                   <div className="mr-auto pr-3">
                     <h4 className="text-black fs-20">Orders Summary</h4>
-                    <p className="fs-13 mb-0 text-black">
+                    {/* <p className="fs-13 mb-0 text-black">
                       Lorem ipsum dolor sit amet, consectetur
-                    </p>
+                    </p> */}
                   </div>
                   <div className="card-action card-tabs mt-3 mt-sm-0 mt-3 mb-sm-0 mb-3 mt-sm-0">
                     <ul className="nav nav-tabs" role="tablist">
@@ -250,6 +394,7 @@ const ContentBody = () => {
                           href="#Monthly"
                           role="tab"
                           aria-selected="true"
+                          onClick={() => monthlyPercent()}
                         >
                           Monthly
                         </a>
@@ -261,6 +406,7 @@ const ContentBody = () => {
                           href="#Weekly"
                           role="tab"
                           aria-selected="false"
+                          onClick={() => weeklyPercent()}
                         >
                           Weekly
                         </a>
@@ -272,6 +418,7 @@ const ContentBody = () => {
                           href="#Today"
                           role="tab"
                           aria-selected="false"
+                          onClick={() => dailyPercent()}
                         >
                           Today
                         </a>
@@ -288,10 +435,10 @@ const ContentBody = () => {
                         </div>
                         <div className="col-sm-6 mb-sm-0 mb-3 text-center">
                           <h3 className="fs-28 text-black font-w600">
-                            $456,005.56
+                            {sub_total_monthly} TK
                           </h3>
-                          <span className="mb-3 d-block">from $500,000.00</span>
-                          <p className="fs-14">
+                          {/* <span className="mb-3 d-block">from $500,000.00</span> */}
+                          {/* <p className="fs-14">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do{" "}
                           </p>
@@ -300,22 +447,22 @@ const ContentBody = () => {
                             className="btn btn-primary light btn-rounded"
                           >
                             More Details
-                          </a>
+                          </a> */}
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-sm-4 mb-md-0 mb-3">
                           <div className="p-3 border rounded">
                             <h3 className="fs-32 text-black font-w600 mb-1">
-                              25
+                              {monthly_pending}
                             </h3>
-                            <span className="fs-18">On Delivery</span>
+                            <span className="fs-18">Pending</span>
                           </div>
                         </div>
                         <div className="col-sm-4 mb-md-0 mb-3">
                           <div className="p-3 border rounded">
                             <h3 className="fs-32 text-black font-w600 mb-1">
-                              60
+                              {monthly_delivered}
                             </h3>
                             <span className="fs-18">Delivered</span>
                           </div>
@@ -323,7 +470,7 @@ const ContentBody = () => {
                         <div className="col-sm-4">
                           <div className="p-3 border rounded">
                             <h3 className="fs-32 text-black font-w600 mb-1">
-                              7
+                              {monthly_canceled}
                             </h3>
                             <span className="fs-18">Canceled</span>
                           </div>
@@ -337,10 +484,10 @@ const ContentBody = () => {
                         </div>
                         <div className="col-sm-6 mb-sm-0 mb-3 text-center">
                           <h3 className="fs-28 text-black font-w600">
-                            $150,002.00
+                            {sub_total_weekly} TK
                           </h3>
-                          <span className="mb-3 d-block">from $400,000.00</span>
-                          <p className="fs-14">
+                          {/* <span className="mb-3 d-block">from $400,000.00</span> */}
+                          {/* <p className="fs-14">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do{" "}
                           </p>
@@ -349,22 +496,22 @@ const ContentBody = () => {
                             className="btn btn-primary light btn-rounded"
                           >
                             More Details
-                          </a>
+                          </a> */}
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-sm-4 mb-md-0 mb-3">
                           <div className="p-3 border rounded">
                             <h3 className="fs-32 text-black font-w600 mb-1">
-                              30
+                              {weekly_pending}
                             </h3>
-                            <span className="fs-18">On Delivery</span>
+                            <span className="fs-18">Pending</span>
                           </div>
                         </div>
                         <div className="col-sm-4 mb-md-0 mb-3">
                           <div className="p-3 border rounded">
                             <h3 className="fs-32 text-black font-w600 mb-1">
-                              55
+                              {weekly_delivered}
                             </h3>
                             <span className="fs-18">Delivered</span>
                           </div>
@@ -372,7 +519,7 @@ const ContentBody = () => {
                         <div className="col-sm-4">
                           <div className="p-3 border rounded">
                             <h3 className="fs-32 text-black font-w600 mb-1">
-                              9
+                              {weekly_canceled}
                             </h3>
                             <span className="fs-18">Canceled</span>
                           </div>
@@ -386,10 +533,12 @@ const ContentBody = () => {
                         </div>
                         <div className="col-sm-6 mb-sm-0 mb-3 text-center">
                           <h3 className="fs-28 text-black font-w600">
-                            $856,005.56
+                            {sub_total_daily} TK
                           </h3>
-                          <span className="mb-3 d-block">from $800,000.00</span>
-                          <p className="fs-14">
+                          <span className="mb-3 d-block">
+                            Yesterday: {sub_total_yesterday} TK
+                          </span>
+                          {/* <p className="fs-14">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do{" "}
                           </p>
@@ -398,22 +547,22 @@ const ContentBody = () => {
                             className="btn btn-primary light btn-rounded"
                           >
                             More Details
-                          </a>
+                          </a> */}
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-sm-4 mb-md-0 mb-3">
                           <div className="p-3 border rounded">
                             <h3 className="fs-32 text-black font-w600 mb-1">
-                              45
+                              {daily_pending}
                             </h3>
-                            <span className="fs-18">On Delivery</span>
+                            <span className="fs-18">Pending</span>
                           </div>
                         </div>
                         <div className="col-sm-4 mb-md-0 mb-3">
                           <div className="p-3 border rounded">
                             <h3 className="fs-32 text-black font-w600 mb-1">
-                              90
+                              {daily_delivered}
                             </h3>
                             <span className="fs-18">Delivered</span>
                           </div>
@@ -421,7 +570,7 @@ const ContentBody = () => {
                         <div className="col-sm-4">
                           <div className="p-3 border rounded">
                             <h3 className="fs-32 text-black font-w600 mb-1">
-                              3
+                              {daily_canceled}
                             </h3>
                             <span className="fs-18">Canceled</span>
                           </div>
@@ -436,12 +585,12 @@ const ContentBody = () => {
               <div className="card">
                 <div className="card-header d-sm-flex d-block pb-0 border-0">
                   <div className="mr-auto pr-3">
-                    <h4 className="text-black fs-20">Revenue</h4>
-                    <p className="fs-13 mb-0 text-black">
+                    <h4 className="text-black fs-20">Monthly Revenue</h4>
+                    {/* <p className="fs-13 mb-0 text-black">
                       Lorem ipsum dolor sit amet, consectetur
-                    </p>
+                    </p> */}
                   </div>
-                  <div className="dropdown mt-sm-0 mt-3">
+                  {/* <div className="dropdown mt-sm-0 mt-3">
                     <button
                       type="button"
                       className="btn btn-primary light btn-rounded dropdown-toggle"
@@ -461,7 +610,7 @@ const ContentBody = () => {
                         Link 3
                       </a>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="card-body" id="user-activity">
                   <div className="d-flex flex-wrap mb-4">
@@ -507,7 +656,7 @@ const ContentBody = () => {
                       <div className="ml-3">
                         <p className="fs-12 mb-1">Income</p>
                         <span className="fs-22 text-black font-w600">
-                          $126,000
+                          {sub_total_monthly} TK
                         </span>
                       </div>
                     </div>

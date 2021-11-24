@@ -1,7 +1,12 @@
 import React from "react";
 import "./css/navheader.css";
+//import { Link } from "react-router-dom";
 
-const NavHeader = () => {
+const NavHeader = ({ data, set_data }) => {
+  function openBlur() {
+    set_data(!data);
+    //document.querySelector(".bg_blur").classList.toggle("blur_bg_inactive");
+  }
   return (
     <>
       <div className="nav-header">
@@ -13,7 +18,7 @@ const NavHeader = () => {
         </a>
 
         <div className="nav-control">
-          <div className="hamburger">
+          <div className="hamburger" onClick={() => openBlur()}>
             <span className="line"></span>
             <span className="line"></span>
             <span className="line"></span>

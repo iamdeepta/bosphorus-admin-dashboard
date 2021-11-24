@@ -199,11 +199,12 @@ const ProductList = () => {
                 <thead>
                   <tr>
                     <th class="width20">#</th>
-                    <th>Name</th>
-                    <th>Detail</th>
-                    <th>Price</th>
                     <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
                     <th>Popular</th>
+                    <th>Detail</th>
+
                     <th>Category</th>
                     <th>Created</th>
 
@@ -216,9 +217,6 @@ const ProductList = () => {
                       <td>
                         <strong>{index + 1}</strong>
                       </td>
-                      <td>{item.product_name}</td>
-                      <td>{item.product_detail}</td>
-                      <td>{item.product_price} TK</td>
                       <td>
                         <img
                           className="product_list_image"
@@ -230,6 +228,8 @@ const ProductList = () => {
                           }
                         />
                       </td>
+                      <td>{item.product_name}</td>
+                      <td>{item.product_price} TK</td>
                       <td>
                         {item.product_popular === "1" ? (
                           <span class="badge light badge-success">Yes</span>
@@ -237,6 +237,8 @@ const ProductList = () => {
                           <span class="badge light badge-danger">No</span>
                         )}
                       </td>
+                      <td>{item.product_detail}</td>
+
                       <td>{item.cat_name}</td>
                       <td>{item.product_date}</td>
 

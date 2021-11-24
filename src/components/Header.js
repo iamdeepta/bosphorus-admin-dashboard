@@ -37,7 +37,7 @@ const Header = () => {
                     </div>
                   </div>
                 </li> */}
-                <li className="nav-item dropdown notification_dropdown">
+                {/* <li className="nav-item dropdown notification_dropdown">
                   <a
                     className="nav-link  ai-icon"
                     href="!#"
@@ -166,8 +166,8 @@ const Header = () => {
                       See all notifications <i className="ti-arrow-right"></i>
                     </a>
                   </div>
-                </li>
-                <li className="nav-item dropdown notification_dropdown">
+                </li> */}
+                {/* <li className="nav-item dropdown notification_dropdown">
                   <a className="nav-link bell bell-link" href="true">
                     <svg
                       width="28"
@@ -193,8 +193,8 @@ const Header = () => {
                       5
                     </span>
                   </a>
-                </li>
-                <li className="nav-item dropdown notification_dropdown">
+                </li> */}
+                {/* <li className="nav-item dropdown notification_dropdown">
                   <a className="nav-link" href="true" data-toggle="dropdown">
                     <svg
                       width="28"
@@ -284,6 +284,9 @@ const Header = () => {
                       </ul>
                     </div>
                   </div>
+                </li> */}
+                <li className="nav-item dropdown header-profile">
+                  <b>Admin</b>
                 </li>
                 <li className="nav-item dropdown header-profile">
                   <a
@@ -320,7 +323,7 @@ const Header = () => {
                       </svg>
                       <span className="ml-2">Profile </span>
                     </Link>
-                    <a href="/inbox" className="dropdown-item ai-icon">
+                    <Link to="/inbox" className="dropdown-item ai-icon">
                       <svg
                         id="icon-inbox"
                         xmlns="http://www.w3.org/2000/svg"
@@ -338,7 +341,7 @@ const Header = () => {
                         <polyline points="22,6 12,13 2,6"></polyline>
                       </svg>
                       <span className="ml-2">Inbox </span>
-                    </a>
+                    </Link>
                     <a
                       href="!#"
                       className="dropdown-item ai-icon"

@@ -1,13 +1,126 @@
 import React from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+//import Dashboard from "../pages/Dashboard";
 
-const Sidebar = () => {
+const Sidebar = ({ data, set_data }) => {
+  const dashboard = () => {
+    var tabLink = [...document.querySelectorAll(".metismenu li")];
+
+    tabLink[0].classList.add("mm-active");
+    tabLink[1].classList.remove("mm-active");
+    tabLink[2].classList.remove("mm-active");
+    tabLink[3].classList.remove("mm-active");
+    tabLink[4].classList.remove("mm-active");
+    tabLink[5].classList.remove("mm-active");
+    tabLink[6].classList.remove("mm-active");
+
+    set_data(true);
+    document.querySelector(".hamburger").click();
+    set_data(true);
+  };
+
+  const categories = () => {
+    var tabLink = [...document.querySelectorAll(".metismenu li")];
+
+    tabLink[0].classList.remove("mm-active");
+    tabLink[1].classList.add("mm-active");
+    tabLink[2].classList.remove("mm-active");
+    tabLink[3].classList.remove("mm-active");
+    tabLink[4].classList.remove("mm-active");
+    tabLink[5].classList.remove("mm-active");
+    tabLink[6].classList.remove("mm-active");
+
+    set_data(true);
+    document.querySelector(".hamburger").click();
+    set_data(true);
+  };
+
+  const products = () => {
+    var tabLink = [...document.querySelectorAll(".metismenu li")];
+
+    tabLink[0].classList.remove("mm-active");
+    tabLink[1].classList.remove("mm-active");
+    tabLink[2].classList.add("mm-active");
+    tabLink[3].classList.remove("mm-active");
+    tabLink[4].classList.remove("mm-active");
+    tabLink[5].classList.remove("mm-active");
+    tabLink[6].classList.remove("mm-active");
+
+    set_data(true);
+    document.querySelector(".hamburger").click();
+    set_data(true);
+  };
+
+  const orders = () => {
+    var tabLink = [...document.querySelectorAll(".metismenu li")];
+
+    tabLink[0].classList.remove("mm-active");
+    tabLink[1].classList.remove("mm-active");
+    tabLink[2].classList.remove("mm-active");
+    tabLink[3].classList.add("mm-active");
+    tabLink[4].classList.remove("mm-active");
+    tabLink[5].classList.remove("mm-active");
+    tabLink[6].classList.remove("mm-active");
+
+    set_data(true);
+    document.querySelector(".hamburger").click();
+    set_data(true);
+  };
+
+  const reservation = () => {
+    var tabLink = [...document.querySelectorAll(".metismenu li")];
+
+    tabLink[0].classList.remove("mm-active");
+    tabLink[1].classList.remove("mm-active");
+    tabLink[2].classList.remove("mm-active");
+    tabLink[3].classList.remove("mm-active");
+    tabLink[4].classList.add("mm-active");
+    tabLink[5].classList.remove("mm-active");
+    tabLink[6].classList.remove("mm-active");
+
+    set_data(true);
+    document.querySelector(".hamburger").click();
+    set_data(true);
+  };
+
+  const gallery = () => {
+    var tabLink = [...document.querySelectorAll(".metismenu li")];
+
+    tabLink[0].classList.remove("mm-active");
+    tabLink[1].classList.remove("mm-active");
+    tabLink[2].classList.remove("mm-active");
+    tabLink[3].classList.remove("mm-active");
+    tabLink[4].classList.remove("mm-active");
+    tabLink[5].classList.add("mm-active");
+    tabLink[6].classList.remove("mm-active");
+
+    set_data(true);
+    document.querySelector(".hamburger").click();
+    set_data(true);
+  };
+
+  const reviews = () => {
+    var tabLink = [...document.querySelectorAll(".metismenu li")];
+
+    tabLink[0].classList.remove("mm-active");
+    tabLink[1].classList.remove("mm-active");
+    tabLink[2].classList.remove("mm-active");
+    tabLink[3].classList.remove("mm-active");
+    tabLink[4].classList.remove("mm-active");
+    tabLink[5].classList.remove("mm-active");
+    tabLink[6].classList.add("mm-active");
+
+    set_data(true);
+    document.querySelector(".hamburger").click();
+    set_data(true);
+  };
+
   return (
     <>
       <div className="deznav">
         <div className="deznav-scroll">
           <ul className="metismenu" id="menu">
-            <li>
+            <li onClick={() => dashboard()}>
               <a className="ai-icon" href="/" ariaExpanded="false">
                 <i className="flaticon-381-networking"></i>
                 <span className="nav-text">Dashboard</span>
@@ -33,41 +146,41 @@ const Sidebar = () => {
                 </li>
               </ul> */}
             </li>
-            <li>
-              <a href="/category" className="ai-icon" ariaExpanded="false">
+            <li onClick={() => categories()}>
+              <Link to="/category" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-settings-2"></i>
                 <span className="nav-text">Categories</span>
-              </a>
+              </Link>
             </li>
-            <li>
-              <a href="/product" className="ai-icon" ariaExpanded="false">
+            <li onClick={() => products()}>
+              <Link to="/product" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-heart"></i>
                 <span className="nav-text">Products</span>
-              </a>
+              </Link>
             </li>
-            <li>
-              <a href="/order" className="ai-icon" ariaExpanded="false">
+            <li onClick={() => orders()}>
+              <Link to="/order" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-notepad"></i>
                 <span className="nav-text">Orders</span>
-              </a>
+              </Link>
             </li>
-            <li>
-              <a href="/reservation" className="ai-icon" ariaExpanded="false">
+            <li onClick={() => reservation()}>
+              <Link to="/reservation" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-layer-1"></i>
                 <span className="nav-text">Reservation</span>
-              </a>
+              </Link>
             </li>
-            <li>
-              <a href="/gallery" className="ai-icon" ariaExpanded="false">
+            <li onClick={() => gallery()}>
+              <Link to="/gallery" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-television"></i>
                 <span className="nav-text">Gallery</span>
-              </a>
+              </Link>
             </li>
-            <li>
-              <a href="/review" className="ai-icon" ariaExpanded="false">
+            <li onClick={() => reviews()}>
+              <Link to="/review" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-internet"></i>
                 <span className="nav-text">Reviews</span>
-              </a>
+              </Link>
             </li>
             {/* <li>
               <a className="has-arrow ai-icon" href="true" ariaExpanded="false">
