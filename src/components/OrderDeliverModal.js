@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AppUrl from "./classes/AppUrl";
 
 const OrderDeliverModal = ({ order_id, get_data }) => {
+  const [loader1, setLoader1] = useState(false);
+  const [loader2, setLoader2] = useState(false);
+
   //delivered order
   async function orderDelivered(id) {
+    setLoader1(true);
     let result = await fetch(AppUrl.base_url + "orderDeliver/" + id, {
       method: "POST",
     });
@@ -14,8 +18,10 @@ const OrderDeliverModal = ({ order_id, get_data }) => {
 
     if (result.success) {
       toast.success(result.success);
+      setLoader1(false);
     } else {
       toast.error(result.error);
+      setLoader1(false);
     }
 
     get_data();
@@ -26,6 +32,7 @@ const OrderDeliverModal = ({ order_id, get_data }) => {
 
   //cancel order
   async function orderCancelled(id) {
+    setLoader2(true);
     let result = await fetch(AppUrl.base_url + "orderCancel/" + id, {
       method: "POST",
     });
@@ -34,8 +41,10 @@ const OrderDeliverModal = ({ order_id, get_data }) => {
 
     if (result.success) {
       toast.success(result.success);
+      setLoader2(false);
     } else {
       toast.error(result.error);
+      setLoader2(false);
     }
 
     get_data();
@@ -78,20 +87,37 @@ const OrderDeliverModal = ({ order_id, get_data }) => {
                 </div> */}
 
                 <div className="form-group">
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={() => orderDelivered(order_id)}
-                  >
-                    Delivered
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary btn_unpopular"
-                    onClick={() => orderCancelled(order_id)}
-                  >
-                    Cancelled
-                  </button>
+                  {loader1 ? (
+                    <>
+                      <div class="spinner-border"></div>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={() => orderDelivered(order_id)}
+                      >
+                        Delivered
+                      </button>
+                    </>
+                  )}
+
+                  {loader2 ? (
+                    <>
+                      <div class="spinner-border"></div>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        className="btn btn-primary btn_unpopular"
+                        onClick={() => orderCancelled(order_id)}
+                      >
+                        Canceled
+                      </button>
+                    </>
+                  )}
                 </div>
               </form>
             </div>

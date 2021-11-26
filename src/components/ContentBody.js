@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 //import AddOrderSidebar from "./AddOrderSidebar";
 import axios from "axios";
 import AppUrl from "./classes/AppUrl";
+import "./css/dashboard.css";
 
 const ContentBody = () => {
   const [menu, setMenu] = useState([]);
@@ -12,22 +13,10 @@ const ContentBody = () => {
     getData();
     getData1();
     getData2();
+    monthlyPercent();
+    weeklyPercent();
+    dailyPercent();
   }, []);
-
-  const monthlyPercent = () => {
-    // var percent_monthly = (document.querySelector("#SvgjsText1026").innerHTML =
-    //   "77%");
-  };
-
-  const weeklyPercent = () => {
-    // var percent_weekly = (document.querySelector("#SvgjsText1094").innerHTML =
-    //   "78%");
-  };
-
-  const dailyPercent = () => {
-    // var percent_daily = (document.querySelector("#SvgjsText1154").innerHTML =
-    //   "87%");
-  };
 
   // window.onload = function percent() {
   //   var percent_monthly = (document.querySelector("#SvgjsText1026").innerHTML =
@@ -74,7 +63,11 @@ const ContentBody = () => {
   }
   yesterday = yyyy + "-" + mm + "-" + dd;
 
-  order.map((item) => (sub_total = sub_total + parseInt(item.order_subtotal)));
+  order.map((item) =>
+    item.order_status.toString() === "1"
+      ? (sub_total = sub_total + parseInt(item.order_subtotal))
+      : "N/A"
+  );
 
   order.map((item) =>
     item.order_date === date
@@ -195,6 +188,77 @@ const ContentBody = () => {
         console.log(error);
       });
   }
+
+  //percentage
+
+  const monthlyPercent = () => {
+    let monthly_percent = Math.floor(
+      (parseInt(monthly_delivered) * 100) /
+        (monthly_delivered + monthly_pending + monthly_canceled)
+    );
+    let number = document.getElementById("number");
+    let circle = document.getElementById("circle");
+    let counter = 0;
+    setInterval(() => {
+      if (counter === monthly_percent) {
+        clearInterval();
+      } else {
+        if (monthly_percent <= 100) {
+          counter = counter + 1;
+          number.innerHTML = counter + "%";
+          circle.style.strokeDashoffset = 472 - 472 * (counter / 100);
+        }
+      }
+    }, 30);
+    // var percent_monthly = (document.querySelector("#SvgjsText1026").innerHTML =
+    //   "77%");
+  };
+
+  const weeklyPercent = () => {
+    let weekly_percent = Math.floor(
+      (parseInt(weekly_delivered) * 100) /
+        (weekly_delivered + weekly_pending + weekly_canceled)
+    );
+    let number = document.getElementById("number2");
+    let circle2 = document.getElementById("circle2");
+    let counter = 0;
+    setInterval(() => {
+      if (counter === weekly_percent) {
+        clearInterval();
+      } else {
+        if (weekly_percent <= 100) {
+          counter = counter + 1;
+          number.innerHTML = counter + "%";
+          circle2.style.strokeDashoffset = 472 - 472 * (counter / 100);
+        }
+      }
+    }, 30);
+    // var percent_weekly = (document.querySelector("#SvgjsText1094").innerHTML =
+    //   "78%");
+  };
+
+  const dailyPercent = () => {
+    let daily_percent = Math.floor(
+      (parseInt(daily_delivered) * 100) /
+        (daily_delivered + daily_pending + daily_canceled)
+    );
+    let number = document.getElementById("number3");
+    let circle3 = document.getElementById("circle3");
+    let counter = 0;
+    setInterval(() => {
+      if (counter === daily_percent) {
+        clearInterval();
+      } else {
+        if (daily_percent <= 100) {
+          counter = counter + 1;
+          number.innerHTML = counter + "%";
+          circle3.style.strokeDashoffset = 472 - 472 * (counter / 100);
+        }
+      }
+    }, 30);
+    // var percent_daily = (document.querySelector("#SvgjsText1154").innerHTML =
+    //   "87%");
+  };
 
   return (
     <>
@@ -431,7 +495,36 @@ const ContentBody = () => {
                     <div className="tab-pane fade show active" id="Monthly">
                       <div className="row align-items-center">
                         <div className="col-sm-6">
-                          <div id="radialBar" className="orderChart"></div>
+                          {/* <div id="radialBar" className="orderChart"></div> */}
+                          <div className="skill">
+                            <div className="outer">
+                              <div className="inner">
+                                <div id="number">65%</div>
+                              </div>
+                            </div>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              version="1.1"
+                              width="160px"
+                              height="160px"
+                              className="percentage_bar_svg"
+                            >
+                              <defs>
+                                <linearGradient id="GradientColor">
+                                  <stop offset="0%" stopColor="#e83e8c" />
+                                  <stop offset="100%" stopColor="#ea7a9a" />
+                                </linearGradient>
+                              </defs>
+                              <circle
+                                cx="80"
+                                cy="80"
+                                r="70"
+                                strokeLinecap="round"
+                                className="active"
+                                id="circle"
+                              />
+                            </svg>
+                          </div>
                         </div>
                         <div className="col-sm-6 mb-sm-0 mb-3 text-center">
                           <h3 className="fs-28 text-black font-w600">
@@ -480,7 +573,36 @@ const ContentBody = () => {
                     <div className="tab-pane fade" id="Weekly">
                       <div className="row align-items-center">
                         <div className="col-sm-6">
-                          <div id="radialBar2" className="orderChart"></div>
+                          {/* <div id="radialBar2" className="orderChart"></div> */}
+                          <div className="skill">
+                            <div className="outer">
+                              <div className="inner">
+                                <div id="number2">0%</div>
+                              </div>
+                            </div>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              version="1.1"
+                              width="160px"
+                              height="160px"
+                              className="percentage_bar_svg"
+                            >
+                              <defs>
+                                <linearGradient id="GradientColor2">
+                                  <stop offset="0%" stopColor="#e83e8c" />
+                                  <stop offset="100%" stopColor="#ea7a9a" />
+                                </linearGradient>
+                              </defs>
+                              <circle
+                                cx="80"
+                                cy="80"
+                                r="70"
+                                strokeLinecap="round"
+                                className="active"
+                                id="circle2"
+                              />
+                            </svg>
+                          </div>
                         </div>
                         <div className="col-sm-6 mb-sm-0 mb-3 text-center">
                           <h3 className="fs-28 text-black font-w600">
@@ -529,7 +651,36 @@ const ContentBody = () => {
                     <div className="tab-pane fade" id="Today">
                       <div className="row align-items-center">
                         <div className="col-sm-6">
-                          <div id="radialBar3" className="orderChart"></div>
+                          {/* <div id="radialBar3" className="orderChart"></div> */}
+                          <div className="skill">
+                            <div className="outer">
+                              <div className="inner">
+                                <div id="number3">0%</div>
+                              </div>
+                            </div>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              version="1.1"
+                              width="160px"
+                              height="160px"
+                              className="percentage_bar_svg"
+                            >
+                              <defs>
+                                <linearGradient id="GradientColor3">
+                                  <stop offset="0%" stopColor="#e83e8c" />
+                                  <stop offset="100%" stopColor="#ea7a9a" />
+                                </linearGradient>
+                              </defs>
+                              <circle
+                                cx="80"
+                                cy="80"
+                                r="70"
+                                strokeLinecap="round"
+                                className="active"
+                                id="circle3"
+                              />
+                            </svg>
+                          </div>
                         </div>
                         <div className="col-sm-6 mb-sm-0 mb-3 text-center">
                           <h3 className="fs-28 text-black font-w600">
@@ -661,7 +812,7 @@ const ContentBody = () => {
                       </div>
                     </div>
                     <div className="card-action revenue-tabs">
-                      <ul className="nav nav-tabs" role="tablist">
+                      {/* <ul className="nav nav-tabs" role="tablist">
                         <li className="nav-item">
                           <a
                             className="nav-link active"
@@ -695,7 +846,7 @@ const ContentBody = () => {
                             Beverages
                           </a>
                         </li>
-                      </ul>
+                      </ul> */}
                     </div>
                   </div>
                   <div className="tab-content" id="myTabContent">

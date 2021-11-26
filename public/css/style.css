@@ -16267,7 +16267,7 @@ html[dir="rtl"]
   z-index: 4;
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(120, 130, 140, 0.13);
-  transition: all 0.2s ease;
+  transition: all 0.4s linear;
 }
 @media only screen and (max-width: 1199px) {
   .deznav {

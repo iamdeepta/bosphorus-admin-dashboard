@@ -6,7 +6,7 @@ import { Suspense, lazy, useState } from "react";
 import Preloader from "./components/Preloader";
 //import Category from "./pages/Category";
 import NavHeader from "./components/NavHeader";
-import Chatbox from "./components/Chatbox";
+//import Chatbox from "./components/Chatbox";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 //import AddOrderSidebar from "./components/AddOrderSidebar";
@@ -46,12 +46,21 @@ function App() {
         onClick={() => closeSidebar()}
       ></div>
       <div id="main-wrapper">
-        <NavHeader data={openMenu} set_data={setOpenMenu} />
-        <Chatbox />
-        <Header />
-        <Sidebar data={openMenu} set_data={setOpenMenu} />
-        {/* <AddOrderSidebar /> */}
-        <Suspense fallback={<Preloader />}>
+        {JSON.parse(localStorage.getItem("admin-info")) === "Login" ? (
+          <>
+            <NavHeader data={openMenu} set_data={setOpenMenu} />
+
+            <Header />
+            <Sidebar data={openMenu} set_data={setOpenMenu} />
+          </>
+        ) : (
+          <></>
+        )}
+        <Suspense
+          fallback={
+            window.innerWidth < 768 ? <div>loading</div> : <Preloader />
+          }
+        >
           <Switch>
             {JSON.parse(localStorage.getItem("admin-info")) === "Login" ? (
               <>
@@ -74,7 +83,11 @@ function App() {
           {/* <Dashboard />
         <LoginPage /> */}
         </Suspense>
-        <Footer />
+        {JSON.parse(localStorage.getItem("admin-info")) === "Login" ? (
+          <Footer />
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

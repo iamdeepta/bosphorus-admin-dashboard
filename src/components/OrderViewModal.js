@@ -19,10 +19,14 @@ const OrderViewModal = ({
   get_data,
 }) => {
   const [datas, setDatas] = useState([]);
+  const [data1, setData1] = useState([]);
+
+  //let delivery_charge = 0;
   //const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     getDatas();
+    getData1();
   }, []);
 
   function getDatas() {
@@ -39,6 +43,24 @@ const OrderViewModal = ({
         console.log(error);
       });
   }
+
+  function getData1() {
+    axios
+      .get(AppUrl.base_url + "aboutGet")
+      .then(function (response) {
+        if (response) {
+          setData1(response.data);
+          //setLoader(false);
+          //console.log(response.data);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  let delivery_charge = data1.map((item) => item.about_delivery_charge);
+  delivery_charge = parseInt(delivery_charge);
 
   return (
     <>
@@ -96,6 +118,9 @@ const OrderViewModal = ({
                           <td>
                             <b>Quantity</b>
                           </td>
+                          <td>
+                            <b>Total</b>
+                          </td>
                         </tr>
                       </thead>
                       <tbody>
@@ -104,16 +129,32 @@ const OrderViewModal = ({
                             <td>{item.order_list_food}</td>
                             <td>{item.order_list_price}</td>
                             <td>{item.order_list_quantity}</td>
+                            <td>
+                              {item.order_list_quantity * item.order_list_price}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
 
                       <tr>
+                        <td colSpan="3">
+                          <b>Delivery Charge:</b>
+                        </td>
+                        {/* <td></td>
+                        <td></td> */}
                         <td>
+                          <b>{delivery_charge}</b>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colSpan="3">
                           <b>Subtotal:</b>
                         </td>
+                        {/* <td></td>
+                        <td></td> */}
                         <td>
-                          <b>{order_subtotal}</b>
+                          <b>{parseInt(order_subtotal) + delivery_charge}</b>
                         </td>
                       </tr>
                     </table>

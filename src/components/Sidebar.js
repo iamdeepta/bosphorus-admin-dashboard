@@ -14,9 +14,11 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.remove("mm-active");
 
-    set_data(true);
-    document.querySelector(".hamburger").click();
-    set_data(true);
+    if (window.innerWidth < 768) {
+      set_data(true);
+      document.querySelector(".hamburger").click();
+      //set_data(true);
+    }
   };
 
   const categories = () => {
@@ -30,9 +32,11 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.remove("mm-active");
 
-    set_data(true);
-    document.querySelector(".hamburger").click();
-    set_data(true);
+    if (window.innerWidth < 768) {
+      set_data(true);
+      document.querySelector(".hamburger").click();
+      //set_data(true);
+    }
   };
 
   const products = () => {
@@ -46,9 +50,11 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.remove("mm-active");
 
-    set_data(true);
-    document.querySelector(".hamburger").click();
-    set_data(true);
+    if (window.innerWidth < 768) {
+      set_data(true);
+      document.querySelector(".hamburger").click();
+      //set_data(true);
+    }
   };
 
   const orders = () => {
@@ -62,9 +68,11 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.remove("mm-active");
 
-    set_data(true);
-    document.querySelector(".hamburger").click();
-    set_data(true);
+    if (window.innerWidth < 768) {
+      set_data(true);
+      document.querySelector(".hamburger").click();
+      //set_data(true);
+    }
   };
 
   const reservation = () => {
@@ -78,9 +86,11 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.remove("mm-active");
 
-    set_data(true);
-    document.querySelector(".hamburger").click();
-    set_data(true);
+    if (window.innerWidth < 768) {
+      set_data(true);
+      document.querySelector(".hamburger").click();
+      //set_data(true);
+    }
   };
 
   const gallery = () => {
@@ -94,9 +104,11 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[5].classList.add("mm-active");
     tabLink[6].classList.remove("mm-active");
 
-    set_data(true);
-    document.querySelector(".hamburger").click();
-    set_data(true);
+    if (window.innerWidth < 768) {
+      set_data(true);
+      document.querySelector(".hamburger").click();
+      //set_data(true);
+    }
   };
 
   const reviews = () => {
@@ -110,9 +122,11 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.add("mm-active");
 
-    set_data(true);
-    document.querySelector(".hamburger").click();
-    set_data(true);
+    if (window.innerWidth < 768) {
+      set_data(true);
+      document.querySelector(".hamburger").click();
+      //set_data(true);
+    }
   };
 
   return (

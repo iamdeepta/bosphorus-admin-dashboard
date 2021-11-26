@@ -7,9 +7,9 @@ body {
   text-align: center;
 }
 
-@media screen and (max-width: 568px) {
+@media screen and (max-width: 767px) {
   .blur_bg {
-    position: absolute;
+    position: fixed;
     min-height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.705);
@@ -18,11 +18,16 @@ body {
   }
 
   .blur_bg_inactive {
-    display: none;
+    /* display: none; */
+    opacity: 0;
+    transition: 0.8s;
+    visibility: hidden;
   }
 
   .blur_bg_active {
     display: block;
+    opacity: 1;
+    transition: 0.5s;
   }
 }
 
