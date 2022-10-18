@@ -13,6 +13,8 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[4].classList.remove("mm-active");
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.remove("mm-active");
+    tabLink[7].classList.remove("mm-active");
+    tabLink[8].classList.remove("mm-active");
 
     if (window.innerWidth < 768) {
       set_data(true);
@@ -31,6 +33,8 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[4].classList.remove("mm-active");
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.remove("mm-active");
+    tabLink[7].classList.remove("mm-active");
+    tabLink[8].classList.remove("mm-active");
 
     if (window.innerWidth < 768) {
       set_data(true);
@@ -49,6 +53,8 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[4].classList.remove("mm-active");
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.remove("mm-active");
+    tabLink[7].classList.remove("mm-active");
+    tabLink[8].classList.remove("mm-active");
 
     if (window.innerWidth < 768) {
       set_data(true);
@@ -67,6 +73,8 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[4].classList.remove("mm-active");
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.remove("mm-active");
+    tabLink[7].classList.remove("mm-active");
+    tabLink[8].classList.remove("mm-active");
 
     if (window.innerWidth < 768) {
       set_data(true);
@@ -85,6 +93,8 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[4].classList.add("mm-active");
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.remove("mm-active");
+    tabLink[7].classList.remove("mm-active");
+    tabLink[8].classList.remove("mm-active");
 
     if (window.innerWidth < 768) {
       set_data(true);
@@ -103,6 +113,8 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[4].classList.remove("mm-active");
     tabLink[5].classList.add("mm-active");
     tabLink[6].classList.remove("mm-active");
+    tabLink[7].classList.remove("mm-active");
+    tabLink[8].classList.remove("mm-active");
 
     if (window.innerWidth < 768) {
       set_data(true);
@@ -121,6 +133,48 @@ const Sidebar = ({ data, set_data }) => {
     tabLink[4].classList.remove("mm-active");
     tabLink[5].classList.remove("mm-active");
     tabLink[6].classList.add("mm-active");
+    tabLink[7].classList.remove("mm-active");
+    tabLink[8].classList.remove("mm-active");
+
+    if (window.innerWidth < 768) {
+      set_data(true);
+      document.querySelector(".hamburger").click();
+      //set_data(true);
+    }
+  };
+
+  const hero_section = () => {
+    var tabLink = [...document.querySelectorAll(".metismenu li")];
+
+    tabLink[0].classList.remove("mm-active");
+    tabLink[1].classList.remove("mm-active");
+    tabLink[2].classList.remove("mm-active");
+    tabLink[3].classList.remove("mm-active");
+    tabLink[4].classList.remove("mm-active");
+    tabLink[5].classList.remove("mm-active");
+    tabLink[6].classList.remove("mm-active");
+    tabLink[7].classList.add("mm-active");
+    tabLink[8].classList.remove("mm-active");
+
+    if (window.innerWidth < 768) {
+      set_data(true);
+      document.querySelector(".hamburger").click();
+      //set_data(true);
+    }
+  };
+
+  const service = () => {
+    var tabLink = [...document.querySelectorAll(".metismenu li")];
+
+    tabLink[0].classList.remove("mm-active");
+    tabLink[1].classList.remove("mm-active");
+    tabLink[2].classList.remove("mm-active");
+    tabLink[3].classList.remove("mm-active");
+    tabLink[4].classList.remove("mm-active");
+    tabLink[5].classList.remove("mm-active");
+    tabLink[6].classList.remove("mm-active");
+    tabLink[7].classList.remove("mm-active");
+    tabLink[8].classList.add("mm-active");
 
     if (window.innerWidth < 768) {
       set_data(true);
@@ -160,6 +214,7 @@ const Sidebar = ({ data, set_data }) => {
                 </li>
               </ul> */}
             </li>
+
             <li onClick={() => categories()}>
               <Link to="/category" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-settings-2"></i>
@@ -194,6 +249,20 @@ const Sidebar = ({ data, set_data }) => {
               <Link to="/review" className="ai-icon" ariaExpanded="false">
                 <i className="flaticon-381-internet"></i>
                 <span className="nav-text">Reviews</span>
+              </Link>
+            </li>
+
+            <li onClick={() => hero_section()}>
+              <Link to="/hero-section" className="ai-icon" ariaExpanded="false">
+                <i className="flaticon-381-settings-2"></i>
+                <span className="nav-text">Hero Section</span>
+              </Link>
+            </li>
+
+            <li onClick={() => service()}>
+              <Link to="/service" className="ai-icon" ariaExpanded="false">
+                <i className="flaticon-381-settings-2"></i>
+                <span className="nav-text">Services</span>
               </Link>
             </li>
             {/* <li>

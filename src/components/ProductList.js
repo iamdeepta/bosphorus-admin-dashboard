@@ -8,6 +8,7 @@ import axios from "axios";
 import ProductEditModal from "./ProductEditModal";
 import ProductDeleteModal from "./ProductDeleteModal";
 import ProductPopularModal from "./ProductPopularModal";
+import ProductFeaturedModal from "./ProductFeaturedModal";
 import ProductImageEditModal from "./ProductImageEditModal";
 
 const ProductList = () => {
@@ -203,6 +204,7 @@ const ProductList = () => {
                     <th>Name</th>
                     <th>Price</th>
                     <th>Popular</th>
+                    <th>Featured</th>
                     <th>Detail</th>
 
                     <th>Category</th>
@@ -232,6 +234,13 @@ const ProductList = () => {
                       <td>{item.product_price} TK</td>
                       <td>
                         {item.product_popular === "1" ? (
+                          <span class="badge light badge-success">Yes</span>
+                        ) : (
+                          <span class="badge light badge-danger">No</span>
+                        )}
+                      </td>
+                      <td>
+                        {item.product_featured === "1" ? (
                           <span class="badge light badge-success">Yes</span>
                         ) : (
                           <span class="badge light badge-danger">No</span>
@@ -294,6 +303,16 @@ const ProductList = () => {
                               href="true"
                               data-toggle="modal"
                               data-target={
+                                "#productFeaturedModal" + item.product_id
+                              }
+                            >
+                              Make Featured
+                            </a>
+                            <a
+                              class="dropdown-item"
+                              href="true"
+                              data-toggle="modal"
+                              data-target={
                                 "#productDeleteModal" + item.product_id
                               }
                             >
@@ -316,6 +335,10 @@ const ProductList = () => {
                         get_data={getData1}
                       />
                       <ProductPopularModal
+                        product_id={item.product_id}
+                        get_data={getData1}
+                      />
+                      <ProductFeaturedModal
                         product_id={item.product_id}
                         get_data={getData1}
                       />

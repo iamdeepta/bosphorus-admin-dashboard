@@ -11,6 +11,8 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 //import AddOrderSidebar from "./components/AddOrderSidebar";
 import Footer from "./components/Footer";
+import HeroSection from "./pages/HeroSection";
+import Service from "./pages/Service";
 
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -68,6 +70,8 @@ function App() {
                 <Route exact path="/category" component={Category} />
                 <Route exact path="/product" component={Product} />
                 <Route exact path="/gallery" component={Gallery} />
+                <Route exact path="/hero-section" component={HeroSection} />
+                <Route exact path="/service" component={Service} />
                 <Route exact path="/about" component={Profile} />
                 <Route exact path="/inbox" component={Inbox} />
                 <Route exact path="/review" component={Review} />
